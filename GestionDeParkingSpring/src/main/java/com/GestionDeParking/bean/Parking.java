@@ -1,5 +1,6 @@
 package com.GestionDeParking.bean;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Entity;
@@ -17,10 +18,13 @@ public class Parking implements Serializable {
     private Long id;
     private String liblle;
     private String Adress;
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @OneToMany(mappedBy = "parking")
     private List<Agent> agents;
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @OneToMany(mappedBy = "parking")
     private List<Places> places;
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @OneToMany(mappedBy = "parking")
     private List<Reservation> reservations;
 

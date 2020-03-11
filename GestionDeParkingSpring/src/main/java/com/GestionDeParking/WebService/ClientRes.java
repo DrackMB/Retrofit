@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping({"/GestionDeParking/Client/"})
+@RequestMapping("/GestionDeParking/Client")
 public class ClientRes {
 
     @Autowired
@@ -24,7 +24,7 @@ public class ClientRes {
     public int save(@RequestBody Client client) {
         return clientService.save(client);
     }
-    @GetMapping("/Client/NumCIN/{NumCIN}")
+    @GetMapping("/NumCIN/{NumCIN}")
     public Client findByNumCIN(String numCIN) {
         return clientService.findByNumCIN(numCIN);
     }

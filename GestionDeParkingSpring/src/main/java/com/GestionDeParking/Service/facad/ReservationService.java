@@ -1,5 +1,6 @@
 package com.GestionDeParking.Service.facad;
 
+import com.GestionDeParking.bean.Client;
 import com.GestionDeParking.bean.Reservation;
 import java.util.List;
 
@@ -11,7 +12,7 @@ public interface ReservationService {
 
     int save(Reservation reservation);
 
-    int validateReservation(boolean validat, Reservation reservation);
+    int validateReservation(boolean validat, Client client);
 
     List<Reservation> findAll();
 }

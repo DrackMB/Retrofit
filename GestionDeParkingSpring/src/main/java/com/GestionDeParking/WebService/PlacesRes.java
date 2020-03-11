@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping({"/GestionDeParking/Places/"})
+@RequestMapping("/GestionDeParking/Places")
 public class PlacesRes {
 
     @Autowired

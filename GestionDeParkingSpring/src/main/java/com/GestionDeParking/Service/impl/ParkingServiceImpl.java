@@ -19,27 +19,28 @@ public class ParkingServiceImpl
 
     @Override
     public int save(Parking parking) {
-         if (findByLiblle(parking.getLiblle()) == null) {
-            return -1;
+         if (findByLiblle(parking.getLiblle())== null) {
+             parkingRepository.save(parking);
+            return 1;
         }
-         this.parkingRepository.save(parking);
-        return 1;
+         
+        return -1;
     }
 
     @Override
     public int deleteByLiblle(String liblle) {
         this.placesService.deleteByParkingLiblle(liblle);
-        return this.parkingRepository.deleteByLiblle(liblle);
+        return parkingRepository.deleteByLiblle(liblle);
     }
 
     @Override
     public List<Parking> findAll() {
-        return this.parkingRepository.findAll();
+        return parkingRepository.findAll();
     }
 
     @Override
     public Parking findByLiblle(String liblle) {
-        return this.parkingRepository.findByLiblle(liblle);
+        return parkingRepository.findByLiblle(liblle);
     }
 }
 

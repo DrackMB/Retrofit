@@ -23,22 +23,22 @@ public class AgentServiceImpl implements AgentService {
 
     @Override
     public int ajouterReservation(Reservation reservation) {
-         return this.reservationService.save(reservation);
+        return reservationService.save(reservation);
     }
 
     @Override
     public int validerReservation(boolean validate, Reservation reservation) {
-        return this.reservationService.validateReservation(validate, reservation);
+        return reservationService.validateReservation(validate, reservation.getClient());
     }
 
     @Override
     public Reservation afficherReservation(Client client) {
-        return this.reservationService.findByClientNumCIN(client.getNumCIN());
+        return reservationService.findByClientNumCIN(client.getNumCIN());
     }
 
     @Override
     public int ajouterPlace(int nbPlace, Parking parking) {
-        return this.placesService.updatePlace(nbPlace, parking);
+        return placesService.updatePlace(nbPlace, parking);
     }
 
     @Override
@@ -49,13 +49,16 @@ public class AgentServiceImpl implements AgentService {
     @Override
     public int save(Agent agent, Parking parking) {
         Agent agentResult = findByNumCIN(agent.getNumCIN());
-        if (agentResult == null) {
-            return -1;
+        if (agentResult != null) {
+            if (agentResult.getParking().getLiblle() != null) {
+                if (agentResult.getParking().getLiblle().equals(parking.getLiblle())) {
+                    return -1;
+                }
+
+            }
+
         }
-        if (agentResult.getParking().getLiblle().equals(parking.getLiblle())) {
-            return -2;
-        }
-        this.agentRepository.save(agent);
+        agentRepository.save(agent);
         return 1;
     }
 

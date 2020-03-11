@@ -1,7 +1,9 @@
 package com.GestionDeParking.bean;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,7 +20,8 @@ public class Client implements Serializable {
     private String numCIN;
     private String numMatricule;
     private String numTele;
-    @OneToMany(mappedBy = "client")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @OneToMany(mappedBy = "client",cascade = CascadeType.PERSIST)
     private List<Reservation> reservations;
 
     public String getNumCIN() {

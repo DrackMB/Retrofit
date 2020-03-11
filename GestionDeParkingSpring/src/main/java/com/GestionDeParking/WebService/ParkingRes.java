@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping({"/GestionDeParking/Parking/"})
+@RequestMapping("/GestionDeParking/Parking")
 public class ParkingRes {
 
     @Autowired

@@ -14,10 +14,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping({"/GestionDeParking/Agent/"})
+@RequestMapping("/GestionDeParking/Agent")
 public class AgentRes {
 
     @Autowired
@@ -27,9 +28,10 @@ public class AgentRes {
 //    public int ajouterReservation(@RequestBody Reservation reservation) {
 //        return agentService.ajouterReservation(reservation);
 //    }
-    @PutMapping("/validerReservation/validate/{validate}")
-    public int validerReservation(@PathVariable boolean validate, @RequestBody Reservation reservation) {
-        return agentService.validerReservation(validate, reservation);
+ 
+    @PutMapping("/validerReservation/valide/{valide}")
+    public int validerReservation(@PathVariable boolean valide, @RequestBody Reservation reservation) {
+        return agentService.validerReservation(valide, reservation);
     }
     @GetMapping("/afficherReservation/")
     public Reservation afficherReservation(@PathVariable Client client) {
@@ -48,7 +50,7 @@ public class AgentRes {
     public int save(@RequestBody Agent agent) {
         return this.agentService.save(agent, agent.getParking());
     }
-
+    @GetMapping("/numCIN/{numCIN}")
     public Agent findByNumCIN(String numCIN) {
         return agentService.findByNumCIN(numCIN);
     }

@@ -1,6 +1,7 @@
 package com.GestionDeParking.WebService;
 
 import com.GestionDeParking.Service.facad.ReservationService;
+import com.GestionDeParking.bean.Client;
 import com.GestionDeParking.bean.Reservation;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping({"/GestionDeParking/Reservation/"})
+@RequestMapping("/GestionDeParking/Reservation")
 public class ReservationRes {
 
     @Autowired
@@ -33,9 +34,14 @@ public class ReservationRes {
     public int save(@RequestBody Reservation reservation) {
         return reservationService.save(reservation);
     }
-    @PutMapping("/Reservation/validat/{validat}")
-    public int validateReservation( @PathVariable boolean validat,@RequestBody Reservation reservation) {
-        return reservationService.validateReservation(validat, reservation);
+//    @PutMapping("/Reservation/validat/{valide}")
+//    public int validateReservation( @PathVariable boolean valide,@RequestBody Reservation reservation) {
+//        return reservationService.validateReservation(valide, reservation);
+//    }
+     @Transactional
+     @PutMapping("/Reservation/validat/{valide}")
+    public int validateReservation(@PathVariable boolean valide,@RequestBody Client client) {
+        return reservationService.validateReservation(valide, client);
     }
     @GetMapping("/")
     public List<Reservation> findAll() {
