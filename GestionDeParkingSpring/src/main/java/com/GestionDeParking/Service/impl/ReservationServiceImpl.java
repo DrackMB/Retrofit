@@ -43,7 +43,7 @@ public class ReservationServiceImpl implements ReservationService {
         if(r==null){
             return -1;
         }
-         reservationRepository.validateReservation(valide, client);
+         reservationRepository.validateReservation(valide, r.getClient());
          return 1;
     }
 //    @Override
